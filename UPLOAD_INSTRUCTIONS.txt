@@ -1,0 +1,10 @@
+GLOW FIRM HOMEPAGE COLLAGE UPDATE
+
+Upload these updated files to the ROOT of your GitHub Pages repository:
+- index.html (replace existing)
+- styles.css (replace existing)
+- images/glow-firm-homepage-collage.png (new image inside images folder)
+
+You can also upload all files from this ZIP; they include the complete Version 4 website.
+Keep the images folder structure. Commit changes, wait for GitHub Pages deployment, then refresh.
+The collage is illustrative; the website labels it as a concept.
