@@ -1,22 +1,22 @@
-# Glow Firm™ V3 — GitHub Pages website
+# Glow Firm™ Version 4 — Clean Homepage + Separate Shop
 
-Contains 33 supplier models: 19 green, 7 aqua blue, 7 deep blue.
+Upload the **contents** of this ZIP to the root of your GitHub Pages repository. Do not upload the containing folder. Commit changes and wait for Pages to deploy.
 
-## Upload to GitHub
-1. Extract this ZIP.
-2. Open your existing Glow Firm repository > Code > Add file > Upload files.
-3. Upload `index.html`, `product.html`, `styles.css`, `script.js`, `config.js`, and `products.js` **to the repository root**. Keep the `images` folder alongside them.
-4. Commit changes. Keep Pages set to main branch, /(root). Wait for deployment and refresh the site.
-5. Click a powder card to open `product.html?id=jpg-396` (example).
+## Pages
+- `index.html`: streamlined brand homepage, three clickable color cards, applications, craft and technology sections.
+- `shop.html`: full supplier-model catalog with filters for color, application, model number.
+- `product.html`: individual product details and 1, 2, 4, 8, 16 oz selectors.
+- `products.js`: supplier model data, descriptions and optional photo paths.
+- `config.js`: business contact email and color labels.
+- `script.js`: catalog filters and product page functionality.
+- `styles.css`: complete styles.
+- `images/bikelane-day-night.jpg`: illustrative concept image (not tested road performance).
 
-## Product photos
-Upload photos to `images/` and edit `products.js` to set a model's `image` to `images/jpg-396.jpg`. Current glowing circles are **illustrative CSS placeholders**.
+## Update product photos
+Upload your photos to `images/`. In `products.js`, set each product's `image` field to `images/your-photo.jpg`. Keep original model IDs unchanged.
 
-## Prices and Stripe
-No prices or payment links are configured. Weight selection works, but checkout is intentionally disabled. Each product in `products.js` has `prices` and `stripeLinks` placeholders for later implementation. Do not advertise checkout as live.
+## Prices
+Prices and Stripe checkout intentionally disabled. Supplier specs are unverified and application suitability requires testing.
 
-## Product data
-Transcribed from the uploaded 2-page Foshan Juliang photoluminescent pigment supplier table. Color families are grouped as JPG (green), JPB (aqua blue), and JPA (deep blue). Some non-JPG green models are included as supplier-listed green variants. Values are **supplier claims**, not independent test results. The supplier's usage column does not establish water/solvent binder compatibility or regulatory/environmental approval.
-
-## Contact
-Set `contactEmail` in `config.js` to a real business address when ready.
+## Quick checks
+Open homepage; click each color; check shop filtered results; click a powder; select each weight. Check mobile navigation.
