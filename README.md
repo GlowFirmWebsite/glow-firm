@@ -1,36 +1,22 @@
-# Glow Firm™ — GitHub Pages Website
+# Glow Firm™ V3 — GitHub Pages website
 
-## Preview on GitHub Pages
+Contains 33 supplier models: 19 green, 7 aqua blue, 7 deep blue.
 
-1. Open your existing GitHub repository.
-2. Upload **index.html, styles.css, script.js, config.js** to the repository root (NOT the ZIP itself). You can drag all four files into **Add file → Upload files**. If files already exist, replace them with these versions.
-3. Select **Commit changes**.
-4. Go to **Settings → Pages**. Under **Build and deployment**, select **Deploy from a branch**. Choose **main** and **/(root)**, then Save.
-5. Visit `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`. If your repository is named `YOUR-USERNAME.github.io`, visit `https://YOUR-USERNAME.github.io/`.
-6. Allow a few minutes for deployment. No custom domain is needed.
+## Upload to GitHub
+1. Extract this ZIP.
+2. Open your existing Glow Firm repository > Code > Add file > Upload files.
+3. Upload `index.html`, `product.html`, `styles.css`, `script.js`, `config.js`, and `products.js` **to the repository root**. Keep the `images` folder alongside them.
+4. Commit changes. Keep Pages set to main branch, /(root). Wait for deployment and refresh the site.
+5. Click a powder card to open `product.html?id=jpg-396` (example).
 
-## Enable checkout with Stripe Payment Links
+## Product photos
+Upload photos to `images/` and edit `products.js` to set a model's `image` to `images/jpg-396.jpg`. Current glowing circles are **illustrative CSS placeholders**.
 
-The 15 products are **display-only** until you configure their prices and REAL Stripe Payment Links. No live purchases are possible by default.
+## Prices and Stripe
+No prices or payment links are configured. Weight selection works, but checkout is intentionally disabled. Each product in `products.js` has `prices` and `stripeLinks` placeholders for later implementation. Do not advertise checkout as live.
 
-1. Create a Stripe account and set up a product and Payment Link for each product/size combination.
-2. Open `config.js` and edit `products` entries. IDs use the format `green-1` through `green-5`, `aqua-1` through `aqua-5`, and `blue-1` through `blue-5`. Sizes in order: 1 oz, 2 oz, 4 oz, 8 oz, 16 oz.
-3. Example:
+## Product data
+Transcribed from the uploaded 2-page Foshan Juliang photoluminescent pigment supplier table. Color families are grouped as JPG (green), JPB (aqua blue), and JPA (deep blue). Some non-JPG green models are included as supplier-listed green variants. Values are **supplier claims**, not independent test results. The supplier's usage column does not establish water/solvent binder compatibility or regulatory/environmental approval.
 
-```js
-products: {
-  "green-1": {price: "12.00", stripeUrl: "https://buy.stripe.com/YOUR_REAL_LINK"},
-  "aqua-2": {price: "20.00", stripeUrl: "https://buy.stripe.com/YOUR_REAL_LINK"}
-}
-```
-
-4. To activate email contact, change `contactEmail: ""` to your actual business email.
-5. Commit the changed `config.js` to GitHub. The store updates automatically after deployment.
-
-## Notes
-
-- The powder art is CSS illustration, not a photo of a tested product.
-- The three color families and 15 size variants are editable starter catalog placeholders; adjust to your actual inventory.
-- The site does not claim Coast Guard approval, environmental compliance, guaranteed glow duration, or other unverified product specifications.
-- GitHub Pages is static hosting; Stripe-hosted Payment Links handle checkout off-site. No secret API keys belong in these files.
-- You can later connect a domain purchased from GoDaddy in Settings → Pages.
+## Contact
+Set `contactEmail` in `config.js` to a real business address when ready.
