@@ -6,13 +6,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07110c">
-  <meta name="description" content="Glow Firm photoluminescent materials for creative, industrial and specialty applications.">
+  <meta name="description" content="Glow Firm photoluminescent pigments for creative and specialty applications.">
 
   <title>Glow Firm™ | Where We Light Your Darkest Hours.</title>
 
   <link rel="stylesheet" href="styles.css">
 
   <style>
+    /* HOMEPAGE COLLAGE */
+
     .glow-collage-section {
       width: 100%;
       max-width: 1500px;
@@ -37,15 +39,117 @@
       text-align: center;
     }
 
-    .v4-feature-no-image {
-      display: block;
-      max-width: 850px;
-      margin: 30px auto;
+    /* PERIODIC TABLE DESIGN */
+
+    .glow-elements {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      width: 100%;
+      max-width: 1000px;
+      margin: 45px auto 35px;
+      padding: 15px;
+      box-sizing: border-box;
+      background: #020403;
     }
 
-    .v4-feature-no-image .v4-feature-text {
-      width: 100%;
-      max-width: 100%;
+    .element-tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 240px;
+      padding: 14px 6px;
+      box-sizing: border-box;
+      border: 6px solid #43bd87;
+      border-radius: 0;
+      background: #020905;
+      color: #56d99a;
+      text-align: center;
+
+      box-shadow:
+        0 0 4px #53e6a0,
+        0 0 13px rgba(55, 220, 140, 0.35),
+        inset 0 0 5px rgba(70, 235, 155, 0.3);
+
+      text-shadow:
+        0 0 2px rgba(80, 255, 170, 0.5),
+        0 0 8px rgba(70, 225, 145, 0.2);
+    }
+
+    .element-number {
+      display: block;
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .element-symbol {
+      display: block;
+      margin-top: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(50px, 6vw, 90px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .element-name {
+      display: block;
+      margin-top: 8px;
+      font-size: clamp(12px, 1.5vw, 20px);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .element-mass {
+      display: block;
+      margin-top: 5px;
+      font-size: clamp(12px, 1.4vw, 19px);
+      line-height: 1.2;
+    }
+
+    .element-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(130, 255, 190, 0.12) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+    }
+
+    @media (max-width: 700px) {
+      .glow-elements {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        padding: 8px;
+      }
+
+      .element-tile {
+        min-height: 180px;
+        border-width: 4px;
+      }
+
+      .element-symbol {
+        font-size: 60px;
+      }
+
+      .element-number {
+        font-size: 18px;
+      }
+
+      .element-name,
+      .element-mass {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
@@ -53,6 +157,7 @@
 <body>
 
   <!-- HEADER -->
+
   <header class="header">
 
     <a class="brand" href="index.html">
@@ -82,6 +187,7 @@
   <main>
 
     <!-- HERO -->
+
     <section class="v4-hero">
 
       <div class="v4-hero-copy">
@@ -111,8 +217,8 @@
             Explore Glow Powders ↗
           </a>
 
-          <a class="btn v4-outline" href="#applications">
-            Explore Applications →
+          <a class="btn v4-outline" href="#technology">
+            Explore Technology →
           </a>
 
         </div>
@@ -142,8 +248,8 @@
     </section>
 
 
-    <!-- MAIN GLOW FIRM COLLAGE -->
-    <!-- ONLY ONE MARKETING IMAGE -->
+    <!-- MAIN MARKETING COLLAGE -->
+
     <section
       class="glow-collage-section"
       aria-label="Glow Firm applications showcase"
@@ -152,7 +258,7 @@
       <img
         class="glow-collage-image"
         src="glow-firm-homepage-collage.png"
-        alt="Glow Firm marketing collage featuring glowing roads, powders, marine concepts, industrial applications, and luminous arts and crafts"
+        alt="Glow Firm marketing collage featuring glowing roads, pigments, marine concepts, industrial applications and luminous arts and crafts"
         fetchpriority="high"
       >
 
@@ -166,6 +272,7 @@
 
 
     <!-- SHOP BY COLOR -->
+
     <section class="section v4-section" id="colors">
 
       <div class="v4-heading">
@@ -179,16 +286,18 @@
         </h2>
 
         <p class="intro">
-          Start with a color. Then browse models by particle size,
-          afterglow and supplier-listed application.
+          Start with a color. Then browse models by particle
+          size, afterglow and supplier-listed application.
         </p>
 
       </div>
 
       <div class="v4-color-grid">
 
-        <!-- GREEN -->
-        <a href="shop.html?color=green" class="v4-color-card green">
+        <a
+          href="shop.html?color=green"
+          class="v4-color-card green"
+        >
 
           <div class="v4-color-art">
             <div class="v4-color-orb"></div>
@@ -203,8 +312,10 @@
 
         </a>
 
-        <!-- AQUA BLUE -->
-        <a href="shop.html?color=aqua" class="v4-color-card aqua">
+        <a
+          href="shop.html?color=aqua"
+          class="v4-color-card aqua"
+        >
 
           <div class="v4-color-art">
             <div class="v4-color-orb"></div>
@@ -219,8 +330,10 @@
 
         </a>
 
-        <!-- DEEP BLUE -->
-        <a href="shop.html?color=blue" class="v4-color-card blue">
+        <a
+          href="shop.html?color=blue"
+          class="v4-color-card blue"
+        >
 
           <div class="v4-color-art">
             <div class="v4-color-orb"></div>
@@ -240,9 +353,51 @@
     </section>
 
 
-  
+    <!-- ARTS AND CRAFTS -->
 
-    <!-- TECHNOLOGY -->
+    <section
+      class="section v4-section v4-split"
+      id="crafts"
+    >
+
+      <div>
+
+        <span class="eyebrow">
+          ARTS &amp; CRAFTS
+        </span>
+
+        <h2>
+          Make something<br>
+          <em>extraordinary.</em>
+        </h2>
+
+        <p class="intro">
+          Create luminous resin pieces, decorative art and
+          specialty designs. Choose a pigment by its intended
+          application and particle size.
+        </p>
+
+        <a
+          class="btn"
+          href="shop.html?application=Arts+%26+Crafts"
+        >
+          Explore craft pigments ↗
+        </a>
+
+      </div>
+
+      <div class="v4-craft-art">
+        <span>
+          CREATE<br>
+          <em>AFTER DARK</em>
+        </span>
+      </div>
+
+    </section>
+
+
+    <!-- TECHNOLOGY: PERIODIC TABLE -->
+
     <section
       class="section section-dark v4-section"
       id="technology"
@@ -256,39 +411,62 @@
         Light in. <em>Glow out.</em>
       </h2>
 
-      <div class="v4-steps">
+      <div class="glow-elements">
 
-        <div>
-          <b>01</b>
-          <h3>Absorb</h3>
-          <p>Pigments absorb energy from suitable light.</p>
+        <!-- EUROPIUM -->
+
+        <div class="element-tile">
+          <span class="element-number">63</span>
+          <strong class="element-symbol">Eu</strong>
+          <span class="element-name">Europium</span>
+          <span class="element-mass">151,96</span>
         </div>
 
-        <div>
-          <b>02</b>
-          <h3>Store</h3>
-          <p>Energy is temporarily held within the pigment system.</p>
+        <!-- DYSPROSIUM -->
+
+        <div class="element-tile">
+          <span class="element-number">66</span>
+          <strong class="element-symbol">Dy</strong>
+          <span class="element-name">Dysprosium</span>
+          <span class="element-mass">162,50</span>
         </div>
 
-        <div>
-          <b>03</b>
-          <h3>Glow</h3>
-          <p>Stored energy is gradually emitted as visible light.</p>
+        <!-- STRONTIUM -->
+
+        <div class="element-tile">
+          <span class="element-number">38</span>
+          <strong class="element-symbol">Sr</strong>
+          <span class="element-name">Strontium</span>
+          <span class="element-mass">87,62</span>
+        </div>
+
+        <!-- ALUMINATE -->
+
+        <div class="element-tile">
+          <span class="element-number">Al</span>
+          <strong class="element-symbol">Al</strong>
+          <span class="element-name">Aluminate</span>
         </div>
 
       </div>
 
       <p class="v4-fine">
-        Brightness and duration vary with pigment formulation,
-        charging conditions, particle size, binder and environment.
-        Supplier claims are not independently verified.
+        Photoluminescent strontium aluminate pigments may use
+        europium and dysprosium dopants. Actual formulations,
+        brightness and afterglow depend on the product and
+        operating conditions. Aluminate is a chemical group,
+        not a periodic-table element.
       </p>
 
     </section>
 
 
     <!-- ABOUT -->
-    <section class="section v4-section" id="about">
+
+    <section
+      class="section v4-section"
+      id="about"
+    >
 
       <span class="eyebrow">
         ABOUT GLOW FIRM™
@@ -310,6 +488,7 @@
 
 
     <!-- CONTACT -->
+
     <section
       class="section section-dark v4-section"
       id="contact"
@@ -339,13 +518,16 @@
 
 
   <!-- FOOTER -->
+
   <footer>
 
     <a class="brand" href="index.html">
       ✦ GLOW<span>FIRM</span><sup>™</sup>
     </a>
 
-    <p>Where We Light Your Darkest Hours.</p>
+    <p>
+      Where We Light Your Darkest Hours.
+    </p>
 
     <small>
       © <span id="year"></span> Glow Firm™.
@@ -356,7 +538,8 @@
   </footer>
 
 
-  <!-- WEBSITE SCRIPTS -->
+  <!-- EXISTING WEBSITE SCRIPTS -->
+
   <script src="config.js"></script>
   <script src="products.js"></script>
   <script src="script.js"></script>
