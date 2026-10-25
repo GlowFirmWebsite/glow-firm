@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +38,53 @@
       text-align: center;
     }
 
-    /* PERIODIC TABLE DESIGN */
+    /* PRODUCT JARS — REPLACE THE CIRCLES */
+
+    .v4-color-card .v4-color-art {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 215px;
+      min-height: 215px;
+      padding: 0;
+      overflow: hidden;
+      background: #050807;
+    }
+
+    .v4-color-card .v4-color-orb {
+      display: none !important;
+    }
+
+    .glow-product-jar {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border: 0;
+      border-radius: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .v4-color-card:hover .glow-product-jar {
+      transform: scale(1.035);
+    }
+
+    /* KEEP EXISTING PRODUCT CARD LAYOUT */
+
+    .v4-color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .v4-color-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    /* PERIODIC TABLE */
 
     .glow-elements {
       display: grid;
@@ -71,23 +116,21 @@
 
       box-shadow:
         0 0 4px #53e6a0,
-        0 0 13px rgba(55, 220, 140, 0.35),
-        inset 0 0 5px rgba(70, 235, 155, 0.3);
+        0 0 13px rgba(55,220,140,0.35),
+        inset 0 0 5px rgba(70,235,155,0.3);
 
       text-shadow:
-        0 0 2px rgba(80, 255, 170, 0.5),
-        0 0 8px rgba(70, 225, 145, 0.2);
+        0 0 2px rgba(80,255,170,0.5),
+        0 0 8px rgba(70,225,145,0.2);
     }
 
     .element-number {
-      display: block;
       font-size: 24px;
       line-height: 1.1;
       font-weight: 700;
     }
 
     .element-symbol {
-      display: block;
       margin-top: 5px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: clamp(50px, 6vw, 90px);
@@ -97,18 +140,14 @@
     }
 
     .element-name {
-      display: block;
       margin-top: 8px;
       font-size: clamp(12px, 1.5vw, 20px);
       font-weight: 600;
-      line-height: 1.2;
     }
 
     .element-mass {
-      display: block;
       margin-top: 5px;
       font-size: clamp(12px, 1.4vw, 19px);
-      line-height: 1.2;
     }
 
     .element-tile::after {
@@ -120,13 +159,22 @@
       background-image: repeating-linear-gradient(
         0deg,
         transparent 0px,
-        rgba(130, 255, 190, 0.12) 1px,
+        rgba(130,255,190,0.12) 1px,
         transparent 2px,
         transparent 4px
       );
     }
 
     @media (max-width: 700px) {
+      .v4-color-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .v4-color-card .v4-color-art {
+        height: 230px;
+      }
+
       .glow-elements {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 9px;
@@ -196,9 +244,7 @@
           ADVANCED PHOTOLUMINESCENT MATERIALS
         </span>
 
-        <h1>
-          GLOW <span>FIRM™</span>
-        </h1>
+        <h1>GLOW <span>FIRM™</span></h1>
 
         <h2>
           Where We Light Your<br>
@@ -234,7 +280,6 @@
       </div>
 
       <div class="v4-hero-art">
-
         <div class="v4-orb"></div>
         <div class="v4-orbit"></div>
 
@@ -242,11 +287,9 @@
           LIGHT STORED.<br>
           POSSIBILITIES UNLOCKED.
         </span>
-
       </div>
 
     </section>
-
 
     <!-- MAIN MARKETING COLLAGE -->
 
@@ -258,7 +301,7 @@
       <img
         class="glow-collage-image"
         src="glow-firm-homepage-collage.png"
-        alt="Glow Firm marketing collage featuring glowing roads, pigments, marine concepts, industrial applications and luminous arts and crafts"
+        alt="Glow Firm photoluminescent applications collage"
         fetchpriority="high"
       >
 
@@ -270,8 +313,7 @@
 
     </section>
 
-
-    <!-- SHOP BY COLOR -->
+    <!-- SHOP BY COLOR — NEW JAR PHOTOGRAPHS -->
 
     <section class="section v4-section" id="colors">
 
@@ -294,23 +336,39 @@
 
       <div class="v4-color-grid">
 
+        <!-- ELECTRIC GREEN JAR -->
+
         <a
           href="shop.html?color=green"
           class="v4-color-card green"
         >
 
           <div class="v4-color-art">
-            <div class="v4-color-orb"></div>
+
+            <img
+              class="glow-product-jar"
+              src="glow-firm-electric-green.png"
+              alt="Electric Green glow powder jar showing daylight and glowing appearance"
+              loading="lazy"
+            >
+
           </div>
 
           <div class="v4-color-copy">
+
             <span>01 / ELECTRIC GREEN</span>
+
             <h3>Green Glow</h3>
+
             <p>Explore the green pigment series</p>
+
             <b>Browse green powders ↗</b>
+
           </div>
 
         </a>
+
+        <!-- AQUA BLUE JAR -->
 
         <a
           href="shop.html?color=aqua"
@@ -318,17 +376,31 @@
         >
 
           <div class="v4-color-art">
-            <div class="v4-color-orb"></div>
+
+            <img
+              class="glow-product-jar"
+              src="glow-firm-aqua-blue.png"
+              alt="Aqua Blue glow powder jar showing daylight and glowing appearance"
+              loading="lazy"
+            >
+
           </div>
 
           <div class="v4-color-copy">
+
             <span>02 / AQUA BLUE</span>
+
             <h3>Aqua Blue</h3>
+
             <p>Explore the bright aqua series</p>
+
             <b>Browse aqua powders ↗</b>
+
           </div>
 
         </a>
+
+        <!-- DEEP BLUE JAR -->
 
         <a
           href="shop.html?color=blue"
@@ -336,14 +408,26 @@
         >
 
           <div class="v4-color-art">
-            <div class="v4-color-orb"></div>
+
+            <img
+              class="glow-product-jar"
+              src="glow-firm-deep-blue.png"
+              alt="Deep Blue glow powder jar showing daylight and glowing appearance"
+              loading="lazy"
+            >
+
           </div>
 
           <div class="v4-color-copy">
+
             <span>03 / DEEP BLUE</span>
+
             <h3>Deep Blue</h3>
+
             <p>Explore the deep blue series</p>
+
             <b>Browse blue powders ↗</b>
+
           </div>
 
         </a>
@@ -351,7 +435,6 @@
       </div>
 
     </section>
-
 
     <!-- ARTS AND CRAFTS -->
 
@@ -395,8 +478,7 @@
 
     </section>
 
-
-    <!-- TECHNOLOGY: PERIODIC TABLE -->
+    <!-- TECHNOLOGY — FOUR PERIODIC TABLE BLOCKS -->
 
     <section
       class="section section-dark v4-section"
@@ -413,16 +495,12 @@
 
       <div class="glow-elements">
 
-        <!-- EUROPIUM -->
-
         <div class="element-tile">
           <span class="element-number">63</span>
           <strong class="element-symbol">Eu</strong>
           <span class="element-name">Europium</span>
           <span class="element-mass">151,96</span>
         </div>
-
-        <!-- DYSPROSIUM -->
 
         <div class="element-tile">
           <span class="element-number">66</span>
@@ -431,16 +509,12 @@
           <span class="element-mass">162,50</span>
         </div>
 
-        <!-- STRONTIUM -->
-
         <div class="element-tile">
           <span class="element-number">38</span>
           <strong class="element-symbol">Sr</strong>
           <span class="element-name">Strontium</span>
           <span class="element-mass">87,62</span>
         </div>
-
-        <!-- ALUMINATE -->
 
         <div class="element-tile">
           <span class="element-number">Al</span>
@@ -459,7 +533,6 @@
       </p>
 
     </section>
-
 
     <!-- ABOUT -->
 
@@ -485,7 +558,6 @@
       </p>
 
     </section>
-
 
     <!-- CONTACT -->
 
@@ -516,7 +588,6 @@
 
   </main>
 
-
   <!-- FOOTER -->
 
   <footer>
@@ -537,8 +608,7 @@
 
   </footer>
 
-
-  <!-- EXISTING WEBSITE SCRIPTS -->
+  <!-- EXISTING SCRIPTS -->
 
   <script src="config.js"></script>
   <script src="products.js"></script>
