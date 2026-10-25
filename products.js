@@ -516,3 +516,33 @@ window.GLOW_PRODUCTS = [
     "stripeLinks": {}
   }
 ];
+
+/* ==========================================
+   GLOW FIRM™ PRODUCT IMAGE CONFIGURATION
+   ========================================== */
+
+const glowFirmProductImages = {
+  green: "glow-firm-green-powder.png",
+  aqua: "glow-firm-aqua-powder.png",
+  blue: "glow-firm-deep-blue-powder.png"
+};
+
+/* Automatically assign the correct powder
+   photograph to every product model. */
+
+window.GLOW_PRODUCTS.forEach(function (product) {
+
+  if (product.family === "green") {
+    product.image = glowFirmProductImages.green;
+  }
+
+  if (product.family === "aqua") {
+    product.image = glowFirmProductImages.aqua;
+  }
+
+  if (product.family === "blue") {
+    product.image = glowFirmProductImages.blue;
+  }
+
+});
+
