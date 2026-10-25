@@ -38,40 +38,7 @@
       text-align: center;
     }
 
-    /* PRODUCT JARS — REPLACE THE CIRCLES */
-
-    .v4-color-card .v4-color-art {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 215px;
-      min-height: 215px;
-      padding: 0;
-      overflow: hidden;
-      background: #050807;
-    }
-
-    .v4-color-card .v4-color-orb {
-      display: none !important;
-    }
-
-    .glow-product-jar {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      border: 0;
-      border-radius: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .v4-color-card:hover .glow-product-jar {
-      transform: scale(1.035);
-    }
-
-    /* KEEP EXISTING PRODUCT CARD LAYOUT */
+    /* THREE PRODUCT CARDS */
 
     .v4-color-grid {
       display: grid;
@@ -84,7 +51,43 @@
       overflow: hidden;
     }
 
-    /* PERIODIC TABLE */
+    /* FULL JAR IMAGE — NO CROPPING */
+
+    .v4-color-card .v4-color-art {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 320px;
+      min-height: 320px;
+      padding: 12px;
+      box-sizing: border-box;
+      overflow: hidden;
+      background: #050807;
+    }
+
+    .v4-color-card .v4-color-orb {
+      display: none !important;
+    }
+
+    .v4-color-card .glow-product-jar {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      border: none;
+      border-radius: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .v4-color-card:hover .glow-product-jar {
+      transform: scale(1.025);
+    }
+
+    /* PERIODIC TABLE BLOCKS */
 
     .glow-elements {
       display: grid;
@@ -125,12 +128,14 @@
     }
 
     .element-number {
+      display: block;
       font-size: 24px;
       line-height: 1.1;
       font-weight: 700;
     }
 
     .element-symbol {
+      display: block;
       margin-top: 5px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: clamp(50px, 6vw, 90px);
@@ -140,12 +145,14 @@
     }
 
     .element-name {
+      display: block;
       margin-top: 8px;
       font-size: clamp(12px, 1.5vw, 20px);
       font-weight: 600;
     }
 
     .element-mass {
+      display: block;
       margin-top: 5px;
       font-size: clamp(12px, 1.4vw, 19px);
     }
@@ -165,6 +172,8 @@
       );
     }
 
+    /* MOBILE LAYOUT */
+
     @media (max-width: 700px) {
       .v4-color-grid {
         grid-template-columns: 1fr;
@@ -172,7 +181,8 @@
       }
 
       .v4-color-card .v4-color-art {
-        height: 230px;
+        height: 340px;
+        min-height: 340px;
       }
 
       .glow-elements {
@@ -291,7 +301,7 @@
 
     </section>
 
-    <!-- MAIN MARKETING COLLAGE -->
+    <!-- HOMEPAGE MARKETING COLLAGE -->
 
     <section
       class="glow-collage-section"
@@ -313,7 +323,7 @@
 
     </section>
 
-    <!-- SHOP BY COLOR — NEW JAR PHOTOGRAPHS -->
+    <!-- CHOOSE YOUR GLOW -->
 
     <section class="section v4-section" id="colors">
 
@@ -336,7 +346,7 @@
 
       <div class="v4-color-grid">
 
-        <!-- ELECTRIC GREEN JAR -->
+        <!-- ELECTRIC GREEN -->
 
         <a
           href="shop.html?color=green"
@@ -348,7 +358,7 @@
             <img
               class="glow-product-jar"
               src="glow-firm-electric-green.png"
-              alt="Electric Green glow powder jar showing daylight and glowing appearance"
+              alt="Electric Green glow powder jar"
               loading="lazy"
             >
 
@@ -356,7 +366,7 @@
 
           <div class="v4-color-copy">
 
-            <span>01 / ELECTRIC GREEN</span>
+            <span>ELECTRIC GREEN</span>
 
             <h3>Green Glow</h3>
 
@@ -368,7 +378,7 @@
 
         </a>
 
-        <!-- AQUA BLUE JAR -->
+        <!-- AQUA BLUE -->
 
         <a
           href="shop.html?color=aqua"
@@ -380,7 +390,7 @@
             <img
               class="glow-product-jar"
               src="glow-firm-aqua-blue.png"
-              alt="Aqua Blue glow powder jar showing daylight and glowing appearance"
+              alt="Aqua Blue glow powder jar"
               loading="lazy"
             >
 
@@ -388,7 +398,7 @@
 
           <div class="v4-color-copy">
 
-            <span>02 / AQUA BLUE</span>
+            <span>AQUA BLUE</span>
 
             <h3>Aqua Blue</h3>
 
@@ -400,7 +410,7 @@
 
         </a>
 
-        <!-- DEEP BLUE JAR -->
+        <!-- DEEP BLUE -->
 
         <a
           href="shop.html?color=blue"
@@ -412,7 +422,7 @@
             <img
               class="glow-product-jar"
               src="glow-firm-deep-blue.png"
-              alt="Deep Blue glow powder jar showing daylight and glowing appearance"
+              alt="Deep Blue glow powder jar"
               loading="lazy"
             >
 
@@ -420,7 +430,7 @@
 
           <div class="v4-color-copy">
 
-            <span>03 / DEEP BLUE</span>
+            <span>DEEP BLUE</span>
 
             <h3>Deep Blue</h3>
 
@@ -478,7 +488,7 @@
 
     </section>
 
-    <!-- TECHNOLOGY — FOUR PERIODIC TABLE BLOCKS -->
+    <!-- TECHNOLOGY — PERIODIC TABLE -->
 
     <section
       class="section section-dark v4-section"
@@ -608,7 +618,7 @@
 
   </footer>
 
-  <!-- EXISTING SCRIPTS -->
+  <!-- EXISTING WEBSITE SCRIPTS -->
 
   <script src="config.js"></script>
   <script src="products.js"></script>
