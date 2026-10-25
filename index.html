@@ -47,6 +47,24 @@
       line-height: 1.7;
     }
 
+    /* BOTH HOMEPAGE BUTTONS USE GREEN STYLING */
+
+    .v4-hero .v4-actions .btn {
+      background: #b5ff39;
+      color: #07110c;
+      border: 1px solid #b5ff39;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(181, 255, 57, 0.18);
+      transition: transform 0.2s ease,
+                  box-shadow 0.2s ease;
+    }
+
+    .v4-hero .v4-actions .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(181, 255, 57, 0.38);
+    }
+
     @media (max-width: 650px) {
       .home-powder-image {
         height: 230px;
@@ -128,9 +146,9 @@
             Explore Glow Powders ↗
           </a>
 
-          <!-- SCIENCE BUTTON -->
+          <!-- GREEN SCIENCE BUTTON -->
 
-          <a class="btn v4-outline" href="#science">
+          <a class="btn" href="#science">
             Explore Science →
           </a>
 
