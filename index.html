@@ -1,215 +1,59 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07110c">
-  <meta name="description" content="Glow Firm photoluminescent pigments for creative and specialty applications.">
 
-  <title>Glow Firm™ | Where We Light Your Darkest Hours.</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#07110c">
+
+  <title>
+    Glow Firm™ | Where We Light Your Darkest Hours.
+  </title>
+
+  <meta name="description"
+        content="Glow Firm™ photoluminescent pigments for creative projects, specialty coatings, and industrial applications.">
 
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* HOMEPAGE COLLAGE */
-
-    .glow-collage-section {
-      width: 100%;
-      max-width: 1500px;
-      margin: 0 auto;
-      padding: 24px 20px 40px;
-      box-sizing: border-box;
-    }
-
-    .glow-collage-image {
+    .home-powder-image {
       display: block;
       width: 100%;
-      height: auto;
-      border-radius: 16px;
-    }
-
-    .glow-collage-note {
-      margin: 12px auto 0;
-      max-width: 1000px;
-      color: #a2b3a7;
-      font-size: 12px;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    /* THREE PRODUCT CARDS */
-
-    .v4-color-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .v4-color-card {
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    /* FULL JAR IMAGE — NO CROPPING */
-
-    .v4-color-card .v4-color-art {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 320px;
-      min-height: 320px;
-      padding: 12px;
-      box-sizing: border-box;
-      overflow: hidden;
-      background: #050807;
-    }
-
-    .v4-color-card .v4-color-orb {
-      display: none !important;
-    }
-
-    .v4-color-card .glow-product-jar {
-      display: block;
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
+      height: 260px;
       object-fit: contain;
-      object-position: center;
-      border: none;
-      border-radius: 0;
-      transition: transform 0.3s ease;
+      background: #000;
     }
 
-    .v4-color-card:hover .glow-product-jar {
-      transform: scale(1.025);
+    .science-preview {
+      background: #0b1a11;
+      border: 1px solid #294232;
+      border-radius: 16px;
+      padding: 36px;
+      margin-top: 25px;
     }
 
-    /* PERIODIC TABLE BLOCKS */
-
-    .glow-elements {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      width: 100%;
-      max-width: 1000px;
-      margin: 45px auto 35px;
-      padding: 15px;
-      box-sizing: border-box;
-      background: #020403;
+    .science-preview p {
+      color: #a3b5a7;
+      line-height: 1.8;
     }
 
-    .element-tile {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-width: 0;
-      min-height: 240px;
-      padding: 14px 6px;
-      box-sizing: border-box;
-      border: 6px solid #43bd87;
-      border-radius: 0;
-      background: #020905;
-      color: #56d99a;
-      text-align: center;
-
-      box-shadow:
-        0 0 4px #53e6a0,
-        0 0 13px rgba(55,220,140,0.35),
-        inset 0 0 5px rgba(70,235,155,0.3);
-
-      text-shadow:
-        0 0 2px rgba(80,255,170,0.5),
-        0 0 8px rgba(70,225,145,0.2);
+    .home-note {
+      color: #a3b5a7;
+      font-size: 13px;
+      line-height: 1.7;
     }
 
-    .element-number {
-      display: block;
-      font-size: 24px;
-      line-height: 1.1;
-      font-weight: 700;
-    }
-
-    .element-symbol {
-      display: block;
-      margin-top: 5px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(50px, 6vw, 90px);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -3px;
-    }
-
-    .element-name {
-      display: block;
-      margin-top: 8px;
-      font-size: clamp(12px, 1.5vw, 20px);
-      font-weight: 600;
-    }
-
-    .element-mass {
-      display: block;
-      margin-top: 5px;
-      font-size: clamp(12px, 1.4vw, 19px);
-    }
-
-    .element-tile::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.16;
-      background-image: repeating-linear-gradient(
-        0deg,
-        transparent 0px,
-        rgba(130,255,190,0.12) 1px,
-        transparent 2px,
-        transparent 4px
-      );
-    }
-
-    /* MOBILE LAYOUT */
-
-    @media (max-width: 700px) {
-      .v4-color-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .v4-color-card .v4-color-art {
-        height: 340px;
-        min-height: 340px;
-      }
-
-      .glow-elements {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-        padding: 8px;
-      }
-
-      .element-tile {
-        min-height: 180px;
-        border-width: 4px;
-      }
-
-      .element-symbol {
-        font-size: 60px;
-      }
-
-      .element-number {
-        font-size: 18px;
-      }
-
-      .element-name,
-      .element-mass {
-        font-size: 13px;
+    @media (max-width: 650px) {
+      .home-powder-image {
+        height: 230px;
       }
     }
   </style>
+
 </head>
 
 <body>
@@ -222,29 +66,38 @@
       ✦ GLOW<span>FIRM</span><sup>™</sup>
     </a>
 
+    <nav id="nav">
+
+      <a href="index.html">Home</a>
+
+      <a href="shop.html">Shop Powders</a>
+
+      <a href="#arts">Arts & Crafts</a>
+
+      <a href="#science">Science</a>
+
+      <a href="#about">About</a>
+
+      <a href="#contact">Contact</a>
+
+    </nav>
+
     <button
       class="menu"
       id="menuBtn"
-      aria-label="Toggle menu"
+      type="button"
+      aria-label="Toggle navigation"
       aria-expanded="false"
     >
       ☰
     </button>
 
-    <nav id="nav">
-      <a href="index.html">Home</a>
-      <a href="shop.html">Shop Powders</a>
-      <a href="#crafts">Arts &amp; Crafts</a>
-      <a href="#technology">Technology</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
   </header>
 
-  <main>
 
-    <!-- HERO -->
+  <!-- MAIN HOMEPAGE HERO -->
+
+  <main>
 
     <section class="v4-hero">
 
@@ -254,17 +107,19 @@
           ADVANCED PHOTOLUMINESCENT MATERIALS
         </span>
 
-        <h1>GLOW <span>FIRM™</span></h1>
+        <h1>
+          GLOW<span>FIRM™</span>
+        </h1>
 
         <h2>
-          Where We Light Your<br>
+          Where We Light Your
           <em>Darkest Hours.</em>
         </h2>
 
         <p>
-          Discover photoluminescent pigments for bold creative
-          projects, specialty coatings and future-facing
-          industrial applications.
+          Discover photoluminescent pigments for
+          bold creative projects, specialty coatings
+          and future-facing industrial applications.
         </p>
 
         <div class="v4-actions">
@@ -273,8 +128,10 @@
             Explore Glow Powders ↗
           </a>
 
-          <a class="btn v4-outline" href="#technology">
-            Explore Technology →
+          <!-- SCIENCE BUTTON -->
+
+          <a class="btn v4-outline" href="#science">
+            Explore Science →
           </a>
 
         </div>
@@ -289,154 +146,154 @@
 
       </div>
 
+
+      <!-- GLOWING ORB -->
+
       <div class="v4-hero-art">
-        <div class="v4-orb"></div>
+
         <div class="v4-orbit"></div>
 
+        <div class="v4-orb"></div>
+
         <span>
-          LIGHT STORED.<br>
+          LIGHT STORED.
+          <br>
           POSSIBILITIES UNLOCKED.
         </span>
+
       </div>
 
     </section>
 
-    <!-- HOMEPAGE MARKETING COLLAGE -->
 
-    <section
-      class="glow-collage-section"
-      aria-label="Glow Firm applications showcase"
-    >
+    <!-- HOMEPAGE COLLAGE -->
+
+    <section class="glow-collage-section">
 
       <img
         class="glow-collage-image"
         src="glow-firm-homepage-collage.png"
-        alt="Glow Firm photoluminescent applications collage"
-        fetchpriority="high"
+        alt="Glow Firm photoluminescent materials, applications and powder colors"
       >
-
-      <p class="glow-collage-note">
-        Concept illustrations of potential applications.
-        Not evidence of completed installations, certified
-        safety performance, or environmental approval.
-      </p>
 
     </section>
 
-    <!-- CHOOSE YOUR GLOW -->
 
-    <section class="section v4-section" id="colors">
+    <!-- SHOP COLORS -->
+
+    <section class="section v4-section" id="powders">
 
       <div class="v4-heading">
 
         <span class="eyebrow">
-          EXPLORE THE COLLECTION
+          GLOW FIRM™ PIGMENT COLLECTION
         </span>
 
         <h2>
-          Choose your <em>glow.</em>
+          Choose Your <em>Glow.</em>
         </h2>
 
         <p class="intro">
-          Start with a color. Then browse models by particle
-          size, afterglow and supplier-listed application.
+          Explore our three photoluminescent pigment
+          colors. Select a color to view available
+          models, micron sizes and applications.
         </p>
 
       </div>
+
 
       <div class="v4-color-grid">
 
         <!-- ELECTRIC GREEN -->
 
         <a
+          class="v4-color-card"
           href="shop.html?color=green"
-          class="v4-color-card green"
         >
 
-          <div class="v4-color-art">
-
-            <img
-              class="glow-product-jar"
-              src="glow-firm-electric-green.png"
-              alt="Electric Green glow powder jar"
-              loading="lazy"
-            >
-
-          </div>
+          <img
+            class="home-powder-image"
+            src="glow-firm-electric-green.png"
+            alt="Electric Green glow powder jar"
+            loading="lazy"
+          >
 
           <div class="v4-color-copy">
 
-            <span>ELECTRIC GREEN</span>
+            <span>PHOTOLUMINESCENT PIGMENT</span>
 
-            <h3>Green Glow</h3>
+            <h3>Electric Green</h3>
 
-            <p>Explore the green pigment series</p>
+            <p>
+              Bright green glow pigments available
+              in multiple particle sizes.
+            </p>
 
-            <b>Browse green powders ↗</b>
+            <b>Explore Green Powders ↗</b>
 
           </div>
 
         </a>
+
 
         <!-- AQUA BLUE -->
 
         <a
-          href="shop.html?color=aqua"
           class="v4-color-card aqua"
+          href="shop.html?color=aqua"
         >
 
-          <div class="v4-color-art">
-
-            <img
-              class="glow-product-jar"
-              src="glow-firm-aqua-blue.png"
-              alt="Aqua Blue glow powder jar"
-              loading="lazy"
-            >
-
-          </div>
+          <img
+            class="home-powder-image"
+            src="glow-firm-aqua-blue.png"
+            alt="Aqua Blue glow powder jar"
+            loading="lazy"
+          >
 
           <div class="v4-color-copy">
 
-            <span>AQUA BLUE</span>
+            <span>PHOTOLUMINESCENT PIGMENT</span>
 
             <h3>Aqua Blue</h3>
 
-            <p>Explore the bright aqua series</p>
+            <p>
+              Aqua-colored glow pigments for
+              creative and specialty applications.
+            </p>
 
-            <b>Browse aqua powders ↗</b>
+            <b>Explore Aqua Powders ↗</b>
 
           </div>
 
         </a>
+
 
         <!-- DEEP BLUE -->
 
         <a
-          href="shop.html?color=blue"
           class="v4-color-card blue"
+          href="shop.html?color=blue"
         >
 
-          <div class="v4-color-art">
-
-            <img
-              class="glow-product-jar"
-              src="glow-firm-deep-blue.png"
-              alt="Deep Blue glow powder jar"
-              loading="lazy"
-            >
-
-          </div>
+          <img
+            class="home-powder-image"
+            src="glow-firm-deep-blue.png"
+            alt="Deep Blue glow powder jar"
+            loading="lazy"
+          >
 
           <div class="v4-color-copy">
 
-            <span>DEEP BLUE</span>
+            <span>PHOTOLUMINESCENT PIGMENT</span>
 
             <h3>Deep Blue</h3>
 
-            <p>Explore the deep blue series</p>
+            <p>
+              Blue photoluminescent pigments
+              available in multiple micron sizes.
+            </p>
 
-            <b>Browse blue powders ↗</b>
+            <b>Explore Blue Powders ↗</b>
 
           </div>
 
@@ -446,128 +303,182 @@
 
     </section>
 
-    <!-- ARTS AND CRAFTS -->
+
+    <!-- APPLICATIONS -->
 
     <section
-      class="section v4-section v4-split"
-      id="crafts"
+      class="section section-dark v4-section"
+      id="applications"
     >
 
-      <div>
+      <div class="v4-heading">
 
         <span class="eyebrow">
-          ARTS &amp; CRAFTS
+          MATERIAL APPLICATIONS
         </span>
 
         <h2>
-          Make something<br>
-          <em>extraordinary.</em>
+          Made for <em>Possibilities.</em>
         </h2>
 
         <p class="intro">
-          Create luminous resin pieces, decorative art and
-          specialty designs. Choose a pigment by its intended
-          application and particle size.
+          Explore potential uses for
+          photoluminescent pigments across
+          creative and industrial applications.
         </p>
 
-        <a
-          class="btn"
-          href="shop.html?application=Arts+%26+Crafts"
-        >
-          Explore craft pigments ↗
+      </div>
+
+
+      <div class="v4-app-grid">
+
+        <a href="shop.html">
+          ◈
+          <strong>Paint & Coatings</strong>
+          <span>Explore pigment models</span>
+        </a>
+
+        <a href="shop.html">
+          ✳
+          <strong>Arts & Crafts</strong>
+          <span>Explore creative materials</span>
+        </a>
+
+        <a href="shop.html">
+          ▥
+          <strong>Roads & Paving</strong>
+          <span>Explore specialty pigments</span>
+        </a>
+
+        <a href="shop.html">
+          ⬡
+          <strong>Plastics & Molding</strong>
+          <span>Explore particle sizes</span>
         </a>
 
       </div>
 
-      <div class="v4-craft-art">
-        <span>
-          CREATE<br>
-          <em>AFTER DARK</em>
-        </span>
-      </div>
-
-    </section>
-
-    <!-- TECHNOLOGY — PERIODIC TABLE -->
-
-    <section
-      class="section section-dark v4-section"
-      id="technology"
-    >
-
-      <span class="eyebrow">
-        THE SCIENCE OF THE GLOW
-      </span>
-
-      <h2>
-        Light in. <em>Glow out.</em>
-      </h2>
-
-      <div class="glow-elements">
-
-        <div class="element-tile">
-          <span class="element-number">63</span>
-          <strong class="element-symbol">Eu</strong>
-          <span class="element-name">Europium</span>
-          <span class="element-mass">151,96</span>
-        </div>
-
-        <div class="element-tile">
-          <span class="element-number">66</span>
-          <strong class="element-symbol">Dy</strong>
-          <span class="element-name">Dysprosium</span>
-          <span class="element-mass">162,50</span>
-        </div>
-
-        <div class="element-tile">
-          <span class="element-number">38</span>
-          <strong class="element-symbol">Sr</strong>
-          <span class="element-name">Strontium</span>
-          <span class="element-mass">87,62</span>
-        </div>
-
-        <div class="element-tile">
-          <span class="element-number">Al</span>
-          <strong class="element-symbol">Al</strong>
-          <span class="element-name">Aluminate</span>
-        </div>
-
-      </div>
-
-      <p class="v4-fine">
-        Photoluminescent strontium aluminate pigments may use
-        europium and dysprosium dopants. Actual formulations,
-        brightness and afterglow depend on the product and
-        operating conditions. Aluminate is a chemical group,
-        not a periodic-table element.
+      <p class="home-note">
+        Application suitability and performance
+        depend on the formulation, binder,
+        environment and appropriate testing.
       </p>
 
     </section>
 
-    <!-- ABOUT -->
+
+    <!-- ARTS AND CRAFTS -->
+
+    <section class="section v4-section" id="arts">
+
+      <div class="v4-split">
+
+        <div>
+
+          <span class="eyebrow">
+            GLOW FIRM™ CREATIVE APPLICATIONS
+          </span>
+
+          <h2>
+            Create Beyond <em>Daylight.</em>
+          </h2>
+
+          <p class="intro">
+            Bring light to artwork, resin projects,
+            decorative coatings, custom creations
+            and other creative applications.
+          </p>
+
+          <a class="btn" href="shop.html">
+            Shop Glow Powders ↗
+          </a>
+
+        </div>
+
+        <div class="v4-craft-art">
+          <span>
+            CREATE
+            <br>
+            <em>WITH GLOW.</em>
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SCIENCE SECTION -->
 
     <section
-      class="section v4-section"
-      id="about"
+      class="section section-dark v4-section"
+      id="science"
     >
+
+      <span class="eyebrow">
+        THE SCIENCE BEHIND THE GLOW
+      </span>
+
+      <h2>
+        Explore the <em>Science.</em>
+      </h2>
+
+      <div class="science-preview">
+
+        <h3>
+          How Photoluminescent Materials Work
+        </h3>
+
+        <p>
+          Photoluminescent pigments absorb light
+          energy and release some of that energy
+          over time as a visible afterglow.
+        </p>
+
+        <p>
+          Glow Firm™ is developing a dedicated
+          Science page covering material
+          composition, light absorption,
+          afterglow behavior, particle sizes
+          and potential applications.
+        </p>
+
+        <span class="eyebrow">
+          DEDICATED SCIENCE PAGE COMING SOON
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="section v4-section" id="about">
 
       <span class="eyebrow">
         ABOUT GLOW FIRM™
       </span>
 
       <h2>
-        Materials for people<br>
-        who <em>think differently.</em>
+        Light the <em>Possibilities.</em>
       </h2>
 
       <p class="intro">
-        Glow Firm™ is developing a collection of photoluminescent
-        pigments for creative and specialty industrial applications.
-        We're building a product experience that makes it easier
-        to choose the right color, particle size and application.
+        Glow Firm™ focuses on photoluminescent
+        materials for creative projects,
+        specialty coatings and emerging
+        industrial applications.
+      </p>
+
+      <p class="intro">
+        Our goal is to make glow pigment options,
+        particle sizes and technical information
+        easier to explore.
       </p>
 
     </section>
+
 
     <!-- CONTACT -->
 
@@ -577,26 +488,27 @@
     >
 
       <span class="eyebrow">
-        LET'S TALK GLOW
+        CONTACT GLOW FIRM™
       </span>
 
       <h2>
-        Have a project <em>in mind?</em>
+        Let's Talk <em>Glow.</em>
       </h2>
 
       <p class="intro">
-        Tell us your substrate, binder, operating environment
-        and desired glow effect. Contact information will be
-        added when the business email is ready.
+        Interested in pigment selection,
+        applications, material specifications
+        or future purchasing options?
       </p>
 
-      <div class="notice" id="contactStatus">
-        Business contact email coming soon.
+      <div id="contactStatus">
+        Contact information coming soon.
       </div>
 
     </section>
 
   </main>
+
 
   <!-- FOOTER -->
 
@@ -612,17 +524,18 @@
 
     <small>
       © <span id="year"></span> Glow Firm™.
-      Supplier specifications and application suitability
-      require verification.
+      All rights reserved.
     </small>
 
   </footer>
 
-  <!-- EXISTING WEBSITE SCRIPTS -->
+
+  <!-- SITE SCRIPTS -->
 
   <script src="config.js"></script>
   <script src="products.js"></script>
   <script src="script.js"></script>
 
 </body>
+
 </html>
