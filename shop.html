@@ -6,18 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07110c">
 
-  <meta
-    name="description"
-    content="Shop Glow Firm photoluminescent powders by color, model and micron size."
-  >
+  <meta name="description"
+        content="Shop Glow Firm photoluminescent powders by color, model, micron size and application.">
 
   <title>Shop Glow Powders | Glow Firm™</title>
 
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* SHOP PAGE */
-
     .gf-shop {
       min-height: 100vh;
       background: #06100b;
@@ -55,7 +51,7 @@
       line-height: 1.8;
     }
 
-    /* THREE COLOR SELECTORS */
+    /* COLOR SELECTION */
 
     .gf-color-grid {
       display: grid;
@@ -169,6 +165,8 @@
       font: inherit;
     }
 
+    /* PRODUCT CARDS */
+
     .gf-products {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -176,44 +174,108 @@
     }
 
     .gf-product {
+      display: flex;
+      flex-direction: column;
       padding: 23px;
       border: 1px solid #294435;
       border-radius: 13px;
       background: #0a1a11;
+      min-width: 0;
+      transition: transform .2s, border-color .2s;
     }
 
-    .gf-product-code {
+    .gf-product:hover {
+      transform: translateY(-3px);
+      border-color: #a8fa4f;
+    }
+
+    .gf-product-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(115px, .82fr);
+      gap: 15px;
+      align-items: start;
+      flex: 1;
+    }
+
+    .gf-product-main {
+      min-width: 0;
+    }
+
+    .gf-product-family {
       color: #a8fa4f;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: .9px;
+      text-transform: uppercase;
     }
 
     .gf-product h3 {
-      margin: 12px 0;
+      margin: 12px 0 16px;
       color: white;
-      font-size: 22px;
+      font-size: clamp(20px, 2vw, 27px);
+      font-weight: 800;
+      letter-spacing: .2px;
+      overflow-wrap: anywhere;
     }
 
     .gf-product-info {
       color: #afc0b3;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.8;
     }
 
+    .gf-product-info div {
+      margin-bottom: 7px;
+    }
+
+    /* APPLICATIONS ON RIGHT */
+
+    .gf-product-apps {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .gf-product-apps-title {
+      color: #a9bdad;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-align: right;
+      margin-bottom: 4px;
+    }
+
+    .gf-app-tag {
+      display: block;
+      background: #173722;
+      border: 1px solid #2d5b3b;
+      border-radius: 7px;
+      padding: 7px 9px;
+      color: #d7ffb8;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
     .gf-product-link {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 18px;
+      display: block;
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px 15px;
       border: 1px solid #a8fa4f;
       border-radius: 7px;
       color: #a8fa4f;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13px;
       text-decoration: none;
+      text-align: center;
+      transition: background .2s, color .2s;
     }
 
-    .gf-product-link:hover {
+    .gf-product-link:hover,
+    .gf-product-link:focus-visible {
       background: #a8fa4f;
       color: #06100b;
     }
@@ -228,19 +290,24 @@
 
     .gf-disclaimer {
       margin-top: 45px;
-      color: #91a497;
+      color: #a9bdad;
       font-size: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    @media (max-width: 900px) {
-      .gf-color-grid,
+    @media (max-width: 1050px) {
       .gf-products {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
+      .gf-color-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
       .gf-shop-inner {
         width: calc(100% - 28px);
         padding-top: 35px;
@@ -258,16 +325,23 @@
       .gf-filter-row select {
         width: 100%;
       }
+
+      .gf-product-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(120px, .85fr);
+      }
+
+      .gf-product h3 {
+        font-size: 25px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- EXISTING WEBSITE HEADER -->
+  <!-- HEADER -->
 
   <header class="header">
-
     <a class="brand" href="index.html">
       ✦ GLOW<span>FIRM</span><sup>™</sup>
     </a>
@@ -275,6 +349,7 @@
     <button
       class="menu"
       id="menuBtn"
+      type="button"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -284,128 +359,98 @@
     <nav id="nav">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop Powders</a>
-      <a href="index.html#crafts">Arts &amp; Crafts</a>
-      <a href="index.html#technology">Technology</a>
+      <a href="index.html#arts">Arts &amp; Crafts</a>
+      <a href="index.html#science">Science</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
     </nav>
-
   </header>
 
   <main class="gf-shop">
-
     <div class="gf-shop-inner">
 
       <span class="gf-eyebrow">
         GLOW FIRM™ / PHOTOLUMINESCENT PIGMENTS
       </span>
 
-      <h1>
-        Choose your <span>powder.</span>
-      </h1>
+      <h1>Choose your <span>powder.</span></h1>
 
       <p class="gf-intro">
-        Explore our three glow colors. Select a powder to
-        browse available models, particle sizes and
-        supplier-reported specifications.
+        Explore our three glow colors. Select a powder
+        to browse available models, particle sizes,
+        afterglow durations and application categories.
       </p>
 
-      <!-- THREE NEW SPILLED-POWDER IMAGES -->
+      <!-- COLOR SELECTION IMAGES -->
 
       <div class="gf-color-grid">
-
-        <!-- ELECTRIC GREEN -->
 
         <a
           class="gf-color-card"
           data-color="green"
           href="shop.html?color=green#powders"
         >
-
           <div class="gf-color-image">
             <img
               src="glow-firm-green-powder.png"
-              alt="Electric Green photoluminescent powder spilling from a glass jar"
+              alt="Electric Green glow powder"
             >
           </div>
-
           <div class="gf-color-details">
             <h2>Electric Green</h2>
             <p>Explore our green glow pigment collection.</p>
             <strong>Choose micron size ↗</strong>
           </div>
-
         </a>
-
-        <!-- AQUA BLUE -->
 
         <a
           class="gf-color-card"
           data-color="aqua"
           href="shop.html?color=aqua#powders"
         >
-
           <div class="gf-color-image">
             <img
               src="glow-firm-aqua-powder.png"
-              alt="Aqua Blue photoluminescent powder spilling from a glass jar"
+              alt="Aqua Blue glow powder"
             >
           </div>
-
           <div class="gf-color-details">
             <h2>Aqua Blue</h2>
-            <p>Explore our bright aqua glow pigment collection.</p>
+            <p>Explore our aqua glow pigment collection.</p>
             <strong>Choose micron size ↗</strong>
           </div>
-
         </a>
-
-        <!-- DEEP BLUE -->
 
         <a
           class="gf-color-card"
           data-color="blue"
           href="shop.html?color=blue#powders"
         >
-
           <div class="gf-color-image">
             <img
               src="glow-firm-deep-blue-powder.png"
-              alt="Deep Blue photoluminescent powder spilling from a glass jar"
+              alt="Deep Blue glow powder"
             >
           </div>
-
           <div class="gf-color-details">
             <h2>Deep Blue</h2>
             <p>Explore our deep blue glow pigment collection.</p>
             <strong>Choose micron size ↗</strong>
           </div>
-
         </a>
 
       </div>
 
-      <!-- MICRON AND MODEL SELECTION -->
+      <!-- PRODUCT SELECTION -->
 
       <section class="gf-results" id="powders">
 
         <div class="gf-results-heading">
-
           <div>
-            <span class="gf-eyebrow">
-              SELECT YOUR PRODUCT
-            </span>
-
-            <h2 id="selectedColorTitle">
-              Available Glow Powders
-            </h2>
+            <span class="gf-eyebrow">SELECT YOUR PRODUCT</span>
+            <h2 id="selectedColorTitle">Available Glow Powders</h2>
           </div>
-
-          <span
-            class="gf-results-count"
-            id="resultsCount"
-          ></span>
-
+          <span class="gf-results-count" id="resultsCount"></span>
         </div>
 
         <div class="gf-filter-row">
@@ -429,23 +474,21 @@
         </div>
 
         <p class="gf-disclaimer">
-          Particle sizes, afterglow durations and applications
-          are based on supplier information where available.
-          Performance and suitability require independent
-          verification. The product detail page controls
-          quantity and any available checkout options.
+          Product specifications and afterglow durations
+          should be supported by testing documentation
+          for the applicable formulation and conditions.
+          Performance may vary with charging light,
+          application method and environment.
         </p>
 
       </section>
 
     </div>
-
   </main>
 
   <!-- FOOTER -->
 
   <footer>
-
     <a class="brand" href="index.html">
       ✦ GLOW<span>FIRM</span><sup>™</sup>
     </a>
@@ -454,12 +497,11 @@
 
     <small>
       © <span id="year"></span> Glow Firm™.
-      Product specifications require verification.
+      All rights reserved.
     </small>
-
   </footer>
 
-  <!-- EXISTING WEBSITE FILES -->
+  <!-- EXISTING SCRIPTS -->
 
   <script src="config.js"></script>
   <script src="products.js"></script>
@@ -472,7 +514,6 @@
       "use strict";
 
       const params = new URLSearchParams(window.location.search);
-
       const allowedColors = ["green", "aqua", "blue"];
 
       let selectedColor = params.get("color") || "green";
@@ -493,115 +534,41 @@
       const title = document.getElementById("selectedColorTitle");
       const count = document.getElementById("resultsCount");
 
-      /*
-        Supports several common product-catalog structures.
-        This reads products.js rather than inventing models.
-      */
-
       function getCatalog() {
-        const candidates = [
-          window.GLOW_PRODUCTS,
-          window.PRODUCTS,
-          window.products,
-          window.glowProducts,
-          window.GLOW_FIRM_PRODUCTS,
-          window.GlowFirmProducts,
-          window.GLOW_CATALOG
-        ];
-
-        for (const candidate of candidates) {
-          if (Array.isArray(candidate)) {
-            return candidate;
-          }
-
-          if (
-            candidate &&
-            Array.isArray(candidate.products)
-          ) {
-            return candidate.products;
-          }
-        }
-
-        return [];
+        return Array.isArray(window.GLOW_PRODUCTS)
+          ? window.GLOW_PRODUCTS
+          : [];
       }
 
       function getCode(product) {
-        return String(
-          product.id ??
-          product.sku ??
-          product.code ??
-          product.model ??
-          product.productId ??
-          ""
-        );
+        return String(product.model || product.id || "")
+          .toUpperCase();
+      }
+
+      function getProductId(product) {
+        return String(product.id || product.model || "");
       }
 
       function getColor(product) {
-        const raw = String(
-          product.color ??
-          product.colorId ??
-          product.colorFamily ??
-          product.category ??
-          product.series ??
-          ""
-        ).toLowerCase();
-
-        const code = getCode(product).toUpperCase();
-
-        if (
-          raw.includes("aqua") ||
-          raw.includes("cyan") ||
-          raw.includes("light blue") ||
-          raw.includes("bright blue") ||
-          code.startsWith("JPB")
-        ) {
-          return "aqua";
-        }
-
-        if (
-          raw.includes("deep blue") ||
-          raw.includes("dark blue") ||
-          raw === "blue" ||
-          code.startsWith("JPA")
-        ) {
-          return "blue";
-        }
-
-        if (
-          raw.includes("green") ||
-          code.startsWith("JPG")
-        ) {
-          return "green";
-        }
-
-        return raw;
+        return String(product.family || "").toLowerCase();
       }
 
       function getMicron(product) {
-        const value =
-          product.microns ??
-          product.micron ??
-          product.particleSize ??
-          product.particle_size ??
-          product.sizeMicron ??
-          product.size ??
-          "";
-
-        return String(value).trim();
+        return String(product.microns || "").trim();
       }
 
       function getDuration(product) {
-        return String(
-          product.afterglow ??
-          product.glowDuration ??
-          product.duration ??
-          product.afterglowHours ??
-          ""
-        ).trim();
+        return String(product.glowHours || "").trim();
+      }
+
+      function getApplications(product) {
+        return Array.isArray(product.applications)
+          ? product.applications
+          : [];
       }
 
       function escapeHTML(value) {
-        return String(value).replace(
+        return String(value ?? "").replace(
           /[&<>"']/g,
           function (character) {
             return {
@@ -613,6 +580,27 @@
             }[character];
           }
         );
+      }
+
+      /* ADD TWO HOURS TO BOTH ENDS OF THE RANGE */
+
+      function getAdjustedAfterglow(duration) {
+        const numbers = String(duration).match(
+          /\d+(?:\.\d+)?/g
+        );
+
+        if (!numbers || numbers.length === 0) {
+          return "";
+        }
+
+        const values = numbers.map(Number);
+
+        if (values.length >= 2) {
+          return (values[0] + 2) + "–" +
+                 (values[1] + 2) + " hours";
+        }
+
+        return (values[0] + 2) + " hours";
       }
 
       function getColorProducts() {
@@ -635,9 +623,7 @@
         const products = getColorProducts();
 
         const sizes = [
-          ...new Set(
-            products.map(getMicron).filter(Boolean)
-          )
+          ...new Set(products.map(getMicron).filter(Boolean))
         ];
 
         micronFilter.innerHTML =
@@ -646,15 +632,13 @@
         sizes.forEach(function (size) {
           const option = document.createElement("option");
           option.value = size;
-          option.textContent = size;
+          option.textContent = size + " μm";
           micronFilter.appendChild(option);
         });
       }
 
       function renderProducts() {
-        title.textContent =
-          colorNames[selectedColor] + " Powders";
-
+        title.textContent = colorNames[selectedColor] + " Powders";
         colorFilter.value = selectedColor;
         updateActiveCards();
 
@@ -663,20 +647,16 @@
 
         const filtered = allProducts.filter(function (product) {
           return selectedMicron === "all" ||
-            getMicron(product) === selectedMicron;
+                 getMicron(product) === selectedMicron;
         });
 
-        count.textContent =
-          filtered.length + " models";
-
+        count.textContent = filtered.length + " models";
         results.innerHTML = "";
 
         if (getCatalog().length === 0) {
           results.innerHTML =
             '<div class="gf-notice">' +
-            'The product catalog could not be read. ' +
-            'Check that products.js is uploaded and ' +
-            'that its product array is available to this page.' +
+            'Product catalog could not be loaded. Check products.js.' +
             '</div>';
           return;
         }
@@ -684,76 +664,81 @@
         if (filtered.length === 0) {
           results.innerHTML =
             '<div class="gf-notice">' +
-            'No models found for this selection. ' +
-            'Try another color or micron size.' +
+            'No models match this selection.' +
             '</div>';
           return;
         }
 
         filtered.forEach(function (product) {
           const code = getCode(product);
-          const name = String(
-            product.name ??
-            product.title ??
-            code ??
-            "Glow Powder"
-          );
-
+          const productId = getProductId(product);
           const micron = getMicron(product);
-          const duration = getDuration(product);
+          const duration = getAdjustedAfterglow(
+            getDuration(product)
+          );
+          const applications = getApplications(product);
+
+          const applicationHTML = applications.length
+            ? applications.map(function (app) {
+                return '<span class="gf-app-tag">' +
+                       escapeHTML(app) +
+                       '</span>';
+              }).join("")
+            : '<span class="gf-app-tag">Contact for applications</span>';
 
           const card = document.createElement("article");
           card.className = "gf-product";
 
-          const codeLabel = document.createElement("span");
-          codeLabel.className = "gf-product-code";
-          codeLabel.textContent = code || "GLOW FIRM";
-          card.appendChild(codeLabel);
+          card.innerHTML = `
+            <div class="gf-product-layout">
 
-          const heading = document.createElement("h3");
-          heading.textContent = name;
-          card.appendChild(heading);
+              <div class="gf-product-main">
 
-          const info = document.createElement("div");
-          info.className = "gf-product-info";
+                <div class="gf-product-family">
+                  ${escapeHTML(colorNames[selectedColor])}
+                </div>
 
-          if (micron) {
-            const sizeLine = document.createElement("div");
-            sizeLine.textContent = "Particle size: " + micron;
-            info.appendChild(sizeLine);
-          }
+                <h3>${escapeHTML(code)}</h3>
 
-          if (duration) {
-            const durationLine = document.createElement("div");
-            durationLine.textContent =
-              "Supplier-listed afterglow: " + duration;
-            info.appendChild(durationLine);
-          }
+                <div class="gf-product-info">
 
-          card.appendChild(info);
+                  <div>
+                    Particle size:
+                    ${escapeHTML(micron)} μm
+                  </div>
 
-          const link = document.createElement("a");
-          link.className = "gf-product-link";
+                  <div>
+                    Supplier Afterglow:
+                    ${escapeHTML(duration)}
+                  </div>
 
-          /*
-            Use product.html with the product's model ID.
-            This assumes product.html supports ?id=MODEL.
-          */
+                </div>
 
-          link.href =
-            "product.html?id=" +
-            encodeURIComponent(code);
+              </div>
 
-          link.textContent = "View Product & Sizes ↗";
+              <div class="gf-product-apps">
+                <div class="gf-product-apps-title">
+                  APPLICATIONS
+                </div>
+                ${applicationHTML}
+              </div>
 
-          card.appendChild(link);
+            </div>
+
+            <a
+              class="gf-product-link"
+              href="product.html?id=${encodeURIComponent(productId)}"
+            >
+              View Product &amp; Sizes ↗
+            </a>
+          `;
+
           results.appendChild(card);
         });
       }
 
       function selectColor(color, updateURL) {
         selectedColor = color;
-
         micronFilter.value = "all";
         updateMicronOptions();
         renderProducts();
