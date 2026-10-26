@@ -1,14 +1,21 @@
 
-/* ==========================================
-   GLOW FIRM™ - COMPLETE WEBSITE SCRIPT
-   Product Images + Filters + Detail Pages
-   ========================================== */
+/* ============================================
+   GLOW FIRM™ - COMPLETE SCRIPT.JS
+   Homepage + Shop + Product Details
+   Images stored in MAIN GitHub directory
+   ============================================ */
 
 (() => {
   "use strict";
 
-  const cfg = window.GLOW_FIRM_CONFIG;
+  const cfg = window.GLOW_FIRM_CONFIG || {};
   const items = window.GLOW_PRODUCTS || [];
+
+  const families = cfg.families || {
+    green: { name: "Electric Green", hex: "#b8ff64" },
+    aqua: { name: "Aqua Blue", hex: "#32f4e5" },
+    blue: { name: "Deep Blue", hex: "#4778ff" }
+  };
 
   const apps = [
     "Paint & Coatings",
@@ -19,7 +26,7 @@
     "Printing & Inks"
   ];
 
-  const icon = {
+  const appIcons = {
     "Paint & Coatings": "◈",
     "Arts & Crafts": "✳",
     "Roads & Paving": "▥",
@@ -28,457 +35,467 @@
     "Printing & Inks": "▤"
   };
 
-  /* ========================================
-     PRODUCT IMAGE FILES
-     ======================================== */
+  /* ============================================
+     CORRECT IMAGE PATHS
+     NO "images/" FOLDER
+     ============================================ */
 
   const powderImages = {
-    green: "images/glow-powder-green-bowl.png",
-    aqua: "images/glow-powder-aqua-blue-bowl.png",
-    blue: "images/glow-powder-deep-blue-bowl.png"
+    green: "glow-powder-green-bowl.png",
+    aqua: "glow-powder-aqua-blue-bowl.png",
+    blue: "glow-powder-deep-blue-bowl.png"
   };
 
-  /* ========================================
-     PRODUCT HELPERS
-     ======================================== */
+  function getFamily(product) {
+    return families[product.family] || families.green;
+  }
 
-  const family = p =>
-    cfg.families[p.family] || cfg.families.green;
-
-  const esc = s =>
-    String(s ?? "").replace(
+  function escapeHTML(value) {
+    return String(value ?? "").replace(
       /[&<>"']/g,
-      c => ({
+      character => ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
         "'": "&#39;"
-      }[c])
+      })[character]
     );
-
-  function getProductImage(p) {
-    return p.image || powderImages[p.family] || "";
   }
 
-  /* ========================================
-     PRODUCT PHOTO
-     ======================================== */
+  function getImage(product) {
+    return (
+      product.image ||
+      powderImages[product.family] ||
+      ""
+    );
+  }
 
-  function art(p) {
+  /* ============================================
+     PRODUCT IMAGE DISPLAY
+     ============================================ */
 
-    const image = getProductImage(p);
-    const f = family(p);
+  function productArtwork(product, isDetail = false) {
+    const family = getFamily(product);
+    const image = getImage(product);
 
-    const photo = image
-      ? `<img
-           class="gf-product-photo"
-           src="${esc(image)}"
-           alt="${esc(f.name)} glow powder ${esc(p.model)}"
-           loading="lazy"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-         >`
+    const detailClass = isDetail
+      ? "gf-detail-art"
+      : "gf-card-art";
+
+    const imageHTML = image
+      ? `
+        <img
+          class="gf-product-photo"
+          src="${escapeHTML(image)}"
+          alt="${escapeHTML(family.name)} pigment ${escapeHTML(product.model)}"
+          loading="${isDetail ? "eager" : "lazy"}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+        >
+      `
       : "";
 
     return `
-      <div class="product-art gf-product-art"
-           style="--pigment:${esc(f.hex)}">
+      <div
+        class="product-art ${detailClass}"
+        style="--pigment:${escapeHTML(family.hex || "#b8ff64")}"
+      >
+        ${imageHTML}
 
-        ${photo}
-
-        <div class="pigment"
-             style="display:${image ? "none" : "block"}">
-        </div>
-
+        <div
+          class="pigment"
+          style="display:${image ? "none" : "block"}"
+          aria-hidden="true"
+        ></div>
       </div>
     `;
   }
 
-  /* ========================================
-     PRODUCT IMAGE STYLING
-     ======================================== */
+  /* ============================================
+     IMAGE STYLING
+     FULL IMAGE VISIBLE - NO CROPPING
+     ============================================ */
 
-  const style = document.createElement("style");
+  const imageStyles = document.createElement("style");
 
-  style.textContent = `
-    .gf-product-art {
+  imageStyles.textContent = `
+    .products .gf-card-art {
+      height: 220px;
+      min-height: 220px;
       width: 100%;
-      height: 245px;
-      min-height: 245px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      background: #000;
       overflow: hidden;
-      background: #030b09;
-      border-radius: 12px;
-      position: relative;
     }
 
     .gf-product-photo {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: center;
-      border-radius: 12px;
+      object-fit: contain !important;
+      object-position: center center !important;
     }
 
-    .product:hover .gf-product-photo {
-      filter: brightness(1.08);
+    .detail-grid .gf-detail-art {
+      width: 100%;
+      min-height: 420px;
+      height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
     }
 
-    .detail-grid .gf-product-art {
-      height: 420px;
-      max-height: 60vh;
-    }
-
-    .detail-grid .gf-product-photo {
+    .detail-grid .gf-detail-art img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: contain !important;
     }
 
-    @media (max-width: 600px) {
-      .gf-product-art {
-        height: 220px;
-        min-height: 220px;
+    @media (max-width: 680px) {
+      .products .gf-card-art {
+        height: 175px;
+        min-height: 175px;
       }
 
-      .detail-grid .gf-product-art {
+      .detail-grid .gf-detail-art {
         height: 300px;
+        min-height: 300px;
       }
     }
   `;
 
-  document.head.appendChild(style);
+  document.head.appendChild(imageStyles);
 
-  /* ========================================
-     FOOTER YEAR
-     ======================================== */
+  /* ============================================
+     COPYRIGHT YEAR
+     ============================================ */
 
-  const year = document.getElementById("year");
+  const yearElement = document.getElementById("year");
 
-  if (year) {
-    year.textContent = new Date().getFullYear();
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
   }
 
-  /* ========================================
+  /* ============================================
      MOBILE NAVIGATION
-     ======================================== */
+     ============================================ */
 
-  const menu = document.getElementById("menuBtn");
+  const menuButton = document.getElementById("menuBtn");
+  const navigation = document.getElementById("nav");
 
-  if (menu) {
-    menu.addEventListener("click", () => {
+  if (menuButton && navigation) {
+    menuButton.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
 
-      const nav = document.getElementById("nav");
-
-      if (!nav) return;
-
-      const open = nav.classList.toggle("open");
-
-      menu.setAttribute(
+      menuButton.setAttribute(
         "aria-expanded",
-        String(open)
+        String(isOpen)
       );
-
     });
   }
 
-  /* ========================================
-     CONTACT INFORMATION
-     ======================================== */
+  /* ============================================
+     CONTACT EMAIL
+     ============================================ */
 
-  const contact =
+  const contactElement =
     document.getElementById("contactStatus");
 
-  if (contact && cfg.contactEmail) {
-
-    contact.innerHTML = `
+  if (contactElement && cfg.contactEmail) {
+    contactElement.innerHTML = `
       Email us at
-      <a href="mailto:${esc(cfg.contactEmail)}">
-        ${esc(cfg.contactEmail)}
+      <a href="mailto:${escapeHTML(cfg.contactEmail)}">
+        ${escapeHTML(cfg.contactEmail)}
       </a>
     `;
-
   }
 
-  /* ========================================
-     SHOP PRODUCT GRID
-     ======================================== */
+  /* ============================================
+     SHOP PAGE
+     ============================================ */
 
-  const grid = document.getElementById("products");
+  const productGrid = document.getElementById("products");
 
-  if (grid) {
-
-    const cf =
+  if (productGrid) {
+    const colorFilter =
       document.getElementById("colorFilter");
 
-    const af =
+    const appFilter =
       document.getElementById("appFilter");
 
-    const sf =
+    const searchFilter =
       document.getElementById("searchFilter");
 
-    apps.forEach(a => {
-      af.add(new Option(a, a));
-    });
+    const resultCount =
+      document.getElementById("resultCount");
 
-    /* ======================================
-       APPLICATION TILES
-       ====================================== */
+    const resetButton =
+      document.getElementById("resetFilters");
 
-    const tiles =
-      document.getElementById("applicationTiles");
+    if (colorFilter && appFilter && searchFilter) {
 
-    if (tiles) {
+      /* ========================================
+         APPLICATION FILTER OPTIONS
+         ======================================== */
 
-      tiles.innerHTML = apps.map(a => `
-        <button
-          class="application-tile"
-          type="button"
-          data-app="${esc(a)}">
+      apps.forEach(app => {
+        const alreadyExists = Array.from(
+          appFilter.options
+        ).some(option => option.value === app);
 
-          <span>${icon[a]}</span>
-
-          ${esc(a)} ↗
-
-        </button>
-      `).join("");
-
-      tiles.querySelectorAll("button").forEach(b => {
-
-        b.addEventListener("click", () => {
-
-          af.value = b.dataset.app;
-
-          render();
-
-          const shop =
-            document.getElementById("shop");
-
-          if (shop) {
-            shop.scrollIntoView({
-              behavior: "smooth"
-            });
-          }
-
-        });
-
+        if (!alreadyExists) {
+          appFilter.add(new Option(app, app));
+        }
       });
 
+      /* ========================================
+         APPLICATION TILES
+         ======================================== */
+
+      const applicationTiles =
+        document.getElementById("applicationTiles");
+
+      if (applicationTiles) {
+        applicationTiles.innerHTML = apps.map(app => `
+          <button
+            class="application-tile"
+            type="button"
+            data-app="${escapeHTML(app)}"
+          >
+            <span>${appIcons[app]}</span>
+            ${escapeHTML(app)} ↗
+          </button>
+        `).join("");
+
+        applicationTiles
+          .querySelectorAll("button")
+          .forEach(button => {
+            button.addEventListener("click", () => {
+              appFilter.value = button.dataset.app;
+              renderProducts();
+
+              const shopSection =
+                document.getElementById("shop");
+
+              if (shopSection) {
+                shopSection.scrollIntoView({
+                  behavior: "smooth"
+                });
+              }
+            });
+          });
+      }
+
+      /* ========================================
+         READ FILTERS FROM URL
+         ======================================== */
+
+      const urlParams = new URLSearchParams(
+        window.location.search
+      );
+
+      const requestedColor = urlParams.get("color");
+      const requestedApp = urlParams.get("application");
+
+      if (
+        ["green", "aqua", "blue"].includes(requestedColor)
+      ) {
+        colorFilter.value = requestedColor;
+      }
+
+      if (apps.includes(requestedApp)) {
+        appFilter.value = requestedApp;
+      }
+
+      /* ========================================
+         RENDER ALL PRODUCT CARDS
+         ======================================== */
+
+      function renderProducts() {
+        const searchTerm = searchFilter.value
+          .trim()
+          .toLowerCase();
+
+        const filteredProducts = items.filter(product => {
+          const matchesColor =
+            colorFilter.value === "all" ||
+            product.family === colorFilter.value;
+
+          const matchesApplication =
+            appFilter.value === "all" ||
+            product.applications.includes(appFilter.value);
+
+          const matchesSearch =
+            !searchTerm ||
+            product.model.toLowerCase().includes(searchTerm);
+
+          return (
+            matchesColor &&
+            matchesApplication &&
+            matchesSearch
+          );
+        });
+
+        if (resultCount) {
+          resultCount.textContent =
+            `Showing ${filteredProducts.length} of ${items.length} pigment models`;
+        }
+
+        if (filteredProducts.length === 0) {
+          productGrid.innerHTML = `
+            <p>
+              No products match these filters.
+              Try clearing a filter.
+            </p>
+          `;
+          return;
+        }
+
+        productGrid.innerHTML = filteredProducts.map(product => {
+          const family = getFamily(product);
+
+          return `
+            <a
+              class="product"
+              href="product.html?id=${encodeURIComponent(product.id)}"
+              aria-label="View ${escapeHTML(product.model)} product details"
+            >
+              ${productArtwork(product)}
+
+              <div class="product-info">
+                <small>
+                  ${escapeHTML(family.name)}
+                  /
+                  ${escapeHTML(product.model)}
+                </small>
+
+                <h3>
+                  ${escapeHTML(family.name)} Glow Powder
+                </h3>
+
+                <p>
+                  Particle size:
+                  ${escapeHTML(product.microns)} μm
+                  <br>
+                  Supplier glow:
+                  ${escapeHTML(product.glowHours)} hours
+                </p>
+
+                <span class="tag">
+                  ${escapeHTML(product.applications[0] || "Specialty")}
+                </span>
+
+                <span class="view">
+                  View details & sizes ↗
+                </span>
+              </div>
+            </a>
+          `;
+        }).join("");
+      }
+
+      /* ========================================
+         FILTER EVENTS
+         ======================================== */
+
+      colorFilter.addEventListener(
+        "change",
+        renderProducts
+      );
+
+      appFilter.addEventListener(
+        "change",
+        renderProducts
+      );
+
+      searchFilter.addEventListener(
+        "input",
+        renderProducts
+      );
+
+      if (resetButton) {
+        resetButton.addEventListener("click", () => {
+          colorFilter.value = "all";
+          appFilter.value = "all";
+          searchFilter.value = "";
+          renderProducts();
+        });
+      }
+
+      renderProducts();
     }
+  }
 
-    /* ======================================
-       URL FILTERS
-       ====================================== */
+  /* ============================================
+     INDIVIDUAL PRODUCT DETAIL PAGE
+     ============================================ */
 
-    const qs = new URLSearchParams(
+  const productDetail =
+    document.getElementById("productDetail");
+
+  if (productDetail) {
+    const urlParams = new URLSearchParams(
       window.location.search
     );
 
-    if (
-      ["green", "aqua", "blue"].includes(
-        qs.get("color")
-      )
-    ) {
-      cf.value = qs.get("color");
-    }
+    const productId = urlParams.get("id");
 
-    if (apps.includes(qs.get("application"))) {
-      af.value = qs.get("application");
-    }
+    const product = items.find(
+      item => item.id === productId
+    );
 
-    /* ======================================
-       RENDER PRODUCTS
-       ====================================== */
-
-    function render() {
-
-      const q = sf.value.trim().toLowerCase();
-
-      const shown = items.filter(p => {
-
-        const colorMatch =
-          cf.value === "all" ||
-          p.family === cf.value;
-
-        const appMatch =
-          af.value === "all" ||
-          p.applications.includes(af.value);
-
-        const searchMatch =
-          !q ||
-          p.model.toLowerCase().includes(q);
-
-        return (
-          colorMatch &&
-          appMatch &&
-          searchMatch
-        );
-
-      });
-
-      const count =
-        document.getElementById("resultCount");
-
-      if (count) {
-        count.textContent =
-          `Showing ${shown.length} of ${items.length} pigment models`;
-      }
-
-      grid.innerHTML = shown.map(p => {
-
-        const f = family(p);
-
-        return `
-          <a
-            class="product"
-            href="product.html?id=${encodeURIComponent(p.id)}"
-            aria-label="View ${esc(p.model)} product details">
-
-            ${art(p)}
-
-            <div class="product-info">
-
-              <small>
-                ${esc(f.name)} / ${esc(p.model)}
-              </small>
-
-              <h3>
-                ${esc(f.name)} Glow Powder
-              </h3>
-
-              <p>
-                Particle size:
-                ${esc(p.microns)} μm
-
-                <br>
-
-                Supplier glow:
-                ${esc(p.glowHours)} hours
-              </p>
-
-              <span class="tag">
-                ${esc(p.applications[0] || "Specialty")}
-              </span>
-
-              <span class="view">
-                View details & sizes ↗
-              </span>
-
-            </div>
-
-          </a>
-        `;
-
-      }).join("") || `
-        <p>
-          No products match these filters.
-          Try clearing a filter.
-        </p>
-      `;
-
-    }
-
-    /* ======================================
-       FILTER EVENTS
-       ====================================== */
-
-    [cf, af, sf].forEach(el => {
-
-      el.addEventListener(
-        el === sf ? "input" : "change",
-        render
-      );
-
-    });
-
-    const reset =
-      document.getElementById("resetFilters");
-
-    if (reset) {
-
-      reset.addEventListener("click", () => {
-
-        cf.value = "all";
-        af.value = "all";
-        sf.value = "";
-
-        render();
-
-      });
-
-    }
-
-    render();
-
-  }
-
-  /* ========================================
-     INDIVIDUAL PRODUCT DETAIL PAGE
-     ======================================== */
-
-  const detail =
-    document.getElementById("productDetail");
-
-  if (detail) {
-
-    const id = new URLSearchParams(
-      window.location.search
-    ).get("id");
-
-    const p = items.find(x => x.id === id);
-
-    if (!p) {
-
-      detail.innerHTML = `
+    if (!product) {
+      productDetail.innerHTML = `
         <h1>Product not found</h1>
         <p>
           Return to the shop and choose a pigment.
         </p>
+        <a class="btn" href="shop.html">
+          Back to Shop
+        </a>
       `;
-
       return;
-
     }
 
-    const f = family(p);
+    const family = getFamily(product);
 
     document.title =
-      `${p.model} ${f.name} | Glow Firm™`;
+      `${product.model} ${family.name} | Glow Firm™`;
 
-    detail.innerHTML = `
+    productDetail.innerHTML = `
       <div class="detail-grid">
 
         <div>
-
-          ${art(p)}
+          ${productArtwork(product, true)}
 
           <p class="intro">
             Product image is illustrative.
             Actual pigment appearance may vary.
           </p>
-
         </div>
 
         <div class="detail-info">
 
           <span class="kicker">
             GLOW FIRM™ /
-            ${esc(f.name).toUpperCase()}
+            ${escapeHTML(family.name).toUpperCase()}
           </span>
 
           <h1>
-            ${esc(f.name)} Glow Powder
+            ${escapeHTML(family.name)} Glow Powder
           </h1>
 
           <p>
-            Model ${esc(p.model)}
+            Model ${escapeHTML(product.model)}
           </p>
 
           <p>
-            ${esc(p.description)}
+            ${escapeHTML(product.description)}
           </p>
 
           <h3 class="subhead">
@@ -489,43 +506,40 @@
             class="sizes"
             id="sizeOptions"
             role="group"
-            aria-label="Choose powder weight">
-          </div>
+            aria-label="Choose powder weight"
+          ></div>
 
           <div
             class="notice"
             id="purchaseStatus"
-            aria-live="polite">
-
+            aria-live="polite"
+          >
             Select a weight.
             Pricing and checkout are coming soon.
-
           </div>
 
           <div class="detail-specs">
 
-            <h3>
-              Technical specifications
-            </h3>
+            <h3>Technical specifications</h3>
 
             <div class="spec-row">
               <span>Supplier model</span>
-              <span>${esc(p.model)}</span>
+              <span>${escapeHTML(product.model)}</span>
             </div>
 
             <div class="spec-row">
               <span>Glow color</span>
-              <span>${esc(f.name)}</span>
+              <span>${escapeHTML(family.name)}</span>
             </div>
 
             <div class="spec-row">
               <span>Particle size</span>
-              <span>${esc(p.microns)} μm</span>
+              <span>${escapeHTML(product.microns)} μm</span>
             </div>
 
             <div class="spec-row">
               <span>Visible afterglow (supplier)</span>
-              <span>${esc(p.glowHours)} hours</span>
+              <span>${escapeHTML(product.glowHours)} hours</span>
             </div>
 
           </div>
@@ -535,9 +549,9 @@
           </h3>
 
           <div>
-            ${p.applications.map(a => `
+            ${product.applications.map(app => `
               <span class="tag">
-                ${esc(a)}
+                ${escapeHTML(app)}
               </span>
             `).join("")}
           </div>
@@ -550,65 +564,61 @@
             Supplier-listed applications are guidance,
             not verified suitability. Water-based and
             solvent-based binder compatibility, outdoor
-            performance, environmental safety and glow
+            performance, environmental safety, and glow
             duration require testing and supporting
             documentation.
           </p>
 
         </div>
-
       </div>
     `;
 
-    /* ======================================
-       WEIGHT SELECTION
-       ====================================== */
+    /* ========================================
+       PRODUCT WEIGHT SELECTION
+       ======================================== */
 
-    const sizeBox =
+    const sizeOptions =
       document.getElementById("sizeOptions");
 
-    let selected = "4 oz";
+    const purchaseStatus =
+      document.getElementById("purchaseStatus");
 
-    if (!cfg.sizes.includes(selected)) {
-      selected = cfg.sizes[0];
-    }
+    const availableSizes = Array.isArray(cfg.sizes)
+      ? cfg.sizes
+      : ["1 oz", "2 oz", "4 oz", "8 oz", "16 oz"];
 
-    function sizes() {
+    let selectedSize = availableSizes.includes("4 oz")
+      ? "4 oz"
+      : availableSizes[0];
 
-      sizeBox.innerHTML = cfg.sizes.map(s => `
+    function renderSizes() {
+      sizeOptions.innerHTML = availableSizes.map(size => `
         <button
           type="button"
-          class="size-btn ${s === selected ? "selected" : ""}"
-          aria-pressed="${s === selected}"
-          data-size="${esc(s)}">
-
-          ${esc(s)}
-
+          class="size-btn ${size === selectedSize ? "selected" : ""}"
+          aria-pressed="${size === selectedSize}"
+          data-size="${escapeHTML(size)}"
+        >
+          ${escapeHTML(size)}
         </button>
       `).join("");
 
-      const purchaseStatus =
-        document.getElementById("purchaseStatus");
+      if (purchaseStatus) {
+        purchaseStatus.textContent =
+          `Selected: ${selectedSize} · Price coming soon · Checkout not yet enabled.`;
+      }
 
-      purchaseStatus.textContent =
-        `Selected: ${selected} · Price coming soon · Checkout not yet enabled.`;
-
-      sizeBox.querySelectorAll("button").forEach(b => {
-
-        b.addEventListener("click", () => {
-
-          selected = b.dataset.size;
-
-          sizes();
-
+      sizeOptions
+        .querySelectorAll("button")
+        .forEach(button => {
+          button.addEventListener("click", () => {
+            selectedSize = button.dataset.size;
+            renderSizes();
+          });
         });
-
-      });
-
     }
 
-    sizes();
-
+    renderSizes();
   }
 
 })();
