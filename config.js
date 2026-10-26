@@ -17,8 +17,8 @@ window.GLOW_FIRM_CONFIG = {
     "4 oz",
     "8 oz",
     "16 oz",
-    "1 LB",
-    "1 KG"
+    "1 lb",
+    "1 kg"
   ],
 
   // Glow Firm product colors
